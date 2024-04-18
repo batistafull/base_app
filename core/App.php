@@ -45,10 +45,6 @@ class App{
         });
     }
 
-    /*public function prepareControllers($nombre){
-        
-    }*/
-
     private function getParams(){
         $routes = explode('/', $_SERVER['REQUEST_URI']);
         if($routes[1] == $this->manifest['name']){

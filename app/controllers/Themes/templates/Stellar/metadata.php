@@ -10,6 +10,9 @@ $metadata = [
             'sidebar' => 'sidebarContent',
             'footer' => 'footerContent',
         ],
-        'login' => [],
+        'login' => [
+            'headerLogin' => 'headerContent',
+            'footerLogin' => 'footerContent',
+        ],
     ],
 ];
