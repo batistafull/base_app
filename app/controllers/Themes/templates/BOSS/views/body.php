@@ -1,0 +1,3 @@
+<?= $headerContent ?>
+<?= $bodyContent ?>
+<?= $footerContent ?>

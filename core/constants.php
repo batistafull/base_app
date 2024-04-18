@@ -7,3 +7,5 @@ define('DB_CONFIG', [
     'username' => 'root',
     'password' => '',
 ]);
+
+define('THEME_NAME', 'Stellar');

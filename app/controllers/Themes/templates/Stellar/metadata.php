@@ -1,0 +1,6 @@
+<?php
+
+
+$metadata = [
+    'name' => 'Stellar',
+];

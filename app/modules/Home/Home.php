@@ -22,7 +22,8 @@ class Home extends Module{
     }
 
     public function test(){
-        echo 'dos';
+        $theme = $this->getController('Themes');
+        $theme->display('Home', 'test', $this->data);
     }
 
 }
