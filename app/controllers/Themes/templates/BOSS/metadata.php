@@ -2,14 +2,11 @@
 
 
 $metadata = [
-    'name' => 'Stellar',
+    'name' => 'BOSS',
     'partials' => [
         'main' => [
             'header' => 'headerContent',
-            'navbar' => 'navbarContent',
-            'sidebar' => 'sidebarContent',
             'footer' => 'footerContent',
-        ],
-        'login' => [],
+        ], 
     ],
 ];

@@ -11,19 +11,8 @@ class Home extends Module{
         //echo json_encode($select);
         //$this->dependencies('TestNumber')->numero();
         $theme = $this->getController('Themes');
+        $theme->display('Home', 'home', $this->data);
 
-    }
-
-    public function edit(){
-        $theme = $this->getController('Themes');
-        $theme->partials($this->data);
-        $this->data['nombre'] = 'Alberto';
-        $this->view('home');
-    }
-
-    public function test(){
-        $theme = $this->getController('Themes');
-        $theme->display('Home', 'test', $this->data);
     }
 
 }

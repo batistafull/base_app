@@ -15,20 +15,15 @@ class Themes extends Controller{
         }
     }
 
-    public function getThemes(){
-        echo 'offk';
-    }
-
-    public function partials($data = []){
+    public function partials($data = [], $type = 'main'){
         $data['themePath'] = $this->themePath;
-        Flight::render($this->controller_path.'templates/'.$this->themeName.'/views/header', $data, 'headerContent');
-        Flight::render($this->controller_path.'templates/'.$this->themeName.'/views/navbar', $data, 'navbarContent');
-        Flight::render($this->controller_path.'templates/'.$this->themeName.'/views/sidebar', $data, 'sidebarContent');
-        Flight::render($this->controller_path.'templates/'.$this->themeName.'/views/footer', $data, 'footerContent');
+        foreach ($this->metadata['partials'][$type] as $key => $value) {
+            Flight::render($this->controller_path.'templates/'.$this->themeName.'/views'.'/'.$key, $data, $value);
+        }
     }
 
-    public function display($module, $path, $data = []){
-        $this->partials($data);
+    public function display($module, $path, $data = [], $type = 'main'){
+        $this->partials($data, $type);
         Flight::render('modules/' . $module . '/views' . '/' . $path, $data, 'bodyContent');
         Flight::render($this->controller_path.'templates/'.$this->themeName.'/views/body', $data);
     }
