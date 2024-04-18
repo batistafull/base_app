@@ -1,0 +1,6 @@
+{
+    "require": {
+        "flightphp/core": "^3.8",
+        "catfan/medoo": "^2.1"
+    }
+}
