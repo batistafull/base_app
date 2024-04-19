@@ -13,10 +13,12 @@ class Home extends Module
         //echo json_encode($select);
         //$this->dependencies('TestNumber')->numero();
         $auth = $this->getComponent('Auth');
-        $auth->checkLogin();
+        //$auth->checkLogin();
         $theme = $this->getComponent('Themes');
         $this->data['nombre'] = 'Alberto';
-        $theme->display('Home', 'home', $this->data);
+        //$theme->display('Home', 'home', $this->data);
+        $db = $this->getComponent('DbManager')->initConexion();
+        echo json_encode($db->select('users', '*'));
 
     }
 }

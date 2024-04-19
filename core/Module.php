@@ -1,24 +1,16 @@
 <?php
-use Medoo\Medoo;
+
 
 class Module{
     protected $className;
     protected $data;
     protected $manifest;
-    protected $db;
 
     public function __construct()
     {
         $this->className = get_called_class();
         $this->data = [];
         $this->manifest = $GLOBALS['manifest'];
-        $this->db = new Medoo([
-            'type' => DB_CONFIG['type'],
-            'host' => DB_CONFIG['host'],
-            'database' => DB_CONFIG['database'],
-            'username' => DB_CONFIG['username'],
-            'password' => DB_CONFIG['password']
-        ]);
         foreach ($GLOBALS['app_manifest'] as $key => $value) {
             $this->data[$key] = $value;
         }
