@@ -7,9 +7,9 @@ class Auth extends Component{
         parent::__construct();
     }
 
-    public function getSession($session, $callback){
-        if (!isset($_SESSION[$session])) {
-            $callback();
+    public function getSession($session, $callback, $diff = false){
+        if ($diff ? isset($_SESSION[$session]) && !empty($_SESSION[$session]) : !isset($_SESSION[$session])) {
+            call_user_func($callback);
         }
     }
 
@@ -17,6 +17,12 @@ class Auth extends Component{
         foreach ($data as $key => $value) {
             $_SESSION[$key] = $value;
         }
-        $callback();
+        call_user_func($callback);
+    }
+
+    public function checkMethod($method, $callback, $diff = false){
+        if ($diff ? $_SERVER['REQUEST_METHOD'] !== strtoupper($method) : $_SERVER['REQUEST_METHOD'] === strtoupper($method)) {
+            call_user_func($callback);
+        }
     }
 }
