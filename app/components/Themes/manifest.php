@@ -2,7 +2,7 @@
 $manifest = [
     'name' => 'Themes',
     'version' => '1.0.0',
-    'description' => 'Controller Themes',
+    'description' => 'Component Themes',
     'author' => 'Alberto Batista',
     'className' => 'Themes'
 ];

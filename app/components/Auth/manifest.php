@@ -2,7 +2,7 @@
 $manifest = [
     'name' => 'Auth',
     'version' => '1.0.0',
-    'description' => 'Controller Auth',
+    'description' => 'Component Auth',
     'author' => 'Alberto Batista',
     'className' => 'Auth'
 ];

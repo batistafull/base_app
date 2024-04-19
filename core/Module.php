@@ -38,12 +38,12 @@ class Module{
         }
     }
 
-    protected function getController($controller){
-        if(is_dir('app/controllers/'.$controller)){
-            if(file_exists('app/controllers/'.$controller.'/manifest.php')){
-                require_once 'app/controllers/'.$controller.'/manifest.php';
-                if(file_exists('app/controllers/'.$manifest['className'].'/'.$manifest['className'].'.php')){
-                    require_once 'app/controllers/'.$controller.'/'.$manifest['className'].'.php';
+    protected function getComponent($component){
+        if(is_dir('app/components/'.$component)){
+            if(file_exists('app/components/'.$component.'/manifest.php')){
+                require_once 'app/components/'.$component.'/manifest.php';
+                if(file_exists('app/components/'.$manifest['className'].'/'.$manifest['className'].'.php')){
+                    require_once 'app/components/'.$component.'/'.$manifest['className'].'.php';
                     return new $manifest['className']();
                 }
             }

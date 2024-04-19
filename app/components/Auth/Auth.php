@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-class Auth extends Controller{
+class Auth extends Component{
     public function __construct()
     {
         parent::__construct();

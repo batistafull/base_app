@@ -7,7 +7,7 @@ class Login extends Module{
     }
 
     public function index(){
-        $theme = $this->getController('Themes');
+        $theme = $this->getComponent('Themes');
         $theme->partials($this->data, 'login');
         $this->view('login');
     }

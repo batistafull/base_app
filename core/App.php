@@ -2,7 +2,7 @@
 require 'vendor/autoload.php';
 require 'core/constants.php';
 require 'core/Module.php';
-require 'core/Controller.php';
+require 'core/Component.php';
 
 class App{
 
@@ -33,7 +33,7 @@ class App{
                     require_once 'app/modules/'.$manifest['className'].'/'.$manifest['className'].'.php';
                     $m = new $manifest['className']();
                     $method = method_exists($m, $this->manifest['routes'][1]) ? $this->manifest['routes'][1] : $manifest['index'];
-                    //$m->getController($this, 'prepareControllers');
+                    //$m->getComponents($this, 'prepareComponents');
                     $m->$method();
                     
                 }else{
