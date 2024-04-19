@@ -5,6 +5,7 @@ class Module{
     protected $className;
     protected $data;
     protected $manifest;
+    protected $props;
 
     public function __construct()
     {
@@ -14,6 +15,7 @@ class Module{
         foreach ($GLOBALS['app_manifest'] as $key => $value) {
             $this->data[$key] = $value;
         }
+        $this->props = $this->getParams();
     }
 
     protected function view($path){
@@ -45,6 +47,15 @@ class Module{
 
     protected function redirect($url){
         Flight::redirect($url);
+    }
+
+    private function getParams(){
+        $routes = explode('/', $_SERVER['REQUEST_URI']);
+        if($routes[1] == $GLOBALS['app_manifest']['name']){
+            return array_slice($routes, 2);
+        }else{
+            return array_slice($routes, 1);
+        }
     }
 
 }

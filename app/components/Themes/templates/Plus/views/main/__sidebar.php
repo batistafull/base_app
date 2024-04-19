@@ -36,13 +36,13 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?= $base_url ?>/clientes">
+            <a class="nav-link" href="<?= $base_url ?>clientes">
                 <i class="mdi mdi-account menu-icon"></i>
                 <span class="menu-title">Clientes</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?= $base_url ?>/servicios">
+            <a class="nav-link" href="<?= $base_url ?>servicios">
                 <i class="mdi mdi mdi-book-plus menu-icon"></i>
                 <span class="menu-title">Servicios</span>
             </a>
@@ -57,10 +57,10 @@
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $base_url ?>/facturas">Facturas</a>
+                        <a class="nav-link" href="<?= $base_url ?>facturas">Facturas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $base_url ?>/cotizacion">Cotización</a>
+                        <a class="nav-link" href="<?= $base_url ?>cotizacion">Cotización</a>
                     </li>
                     <!--li class="nav-item">
                         <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
@@ -70,19 +70,19 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="<?= $base_url ?>/proyectos">
+            <a class="nav-link" href="<?= $base_url ?>proyectos">
                 <i class="mdi mdi-code-not-equal-variant menu-icon"></i>
                 <span class="menu-title">Proyectos</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?= $base_url ?>/integraciones">
+            <a class="nav-link" href="<?= $base_url ?>integraciones">
                 <i class="mdi mdi-buffer menu-icon"></i>
                 <span class="menu-title">Integraciones</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?= $base_url ?>/tickets">
+            <a class="nav-link" href="<?= $base_url ?>tickets">
                 <i class="mdi mdi-ticket menu-icon"></i>
                 <span class="menu-title">Tickets</span>
             </a>
