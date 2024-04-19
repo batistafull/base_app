@@ -20,6 +20,11 @@ class Auth extends Component{
         call_user_func($callback);
     }
 
+    public function deleteSession($callback){
+        session_destroy();
+        call_user_func($callback);
+    }
+
     public function checkMethod($method, $callback, $diff = false){
         if ($diff ? $_SERVER['REQUEST_METHOD'] !== strtoupper($method) : $_SERVER['REQUEST_METHOD'] === strtoupper($method)) {
             call_user_func($callback);
