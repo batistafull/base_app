@@ -19,7 +19,7 @@ class Login extends Module{
     }
 
     public function auth(){
-        $user = $this->db->select('users', '*', ['username' => $_POST['username']]);
+        $user = $this->db->select('users', '*', ['username' => $_POST['username'], 'user_hash' => hash('sha256', $_POST['password'])]);
 
         if(count($user) > 0){
             $this->auth->setSession(['auth_id' => $user[0]['id']], function(){
