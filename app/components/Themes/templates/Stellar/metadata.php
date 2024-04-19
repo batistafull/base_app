@@ -5,6 +5,7 @@ $metadata = [
     'name' => 'Stellar',
     'version' => '1.0.0',
     'author' => 'Alberto Batista',
+    'entryPoint' => 'body',
     'partials' => [
         'main' => [
             'main/header' => 'headerContent',

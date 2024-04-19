@@ -18,7 +18,7 @@ class Login extends Module{
             $this->redirect('/');
          }, true);
         $this->theme->partials($this->data, 'login');
-        $this->view('login');
+        $this->view('login_plus');
     }
 
     public function auth(){

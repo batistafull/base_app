@@ -25,7 +25,7 @@ class Themes extends Component{
     public function display($module, $path, $data = [], $type = 'main'){
         $this->partials($data, $type);
         Flight::render('modules/' . $module . '/views' . '/' . $path, $data, 'bodyContent');
-        Flight::render($this->component_path.'templates/'.$this->themeName.'/views/body', $data);
+        Flight::render($this->component_path.'templates/'.$this->themeName.'/views'.'/'.$this->metadata['entryPoint'], $data);
     }
 
 }

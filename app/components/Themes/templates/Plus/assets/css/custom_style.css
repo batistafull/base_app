@@ -1,0 +1,47 @@
+.card {
+    border-radius: 15px;
+}
+
+html,
+body,
+.container-scroller,
+.sidebar {
+    height: 100%;
+}
+
+.container-fluid {
+    overflow: auto;
+}
+
+.sidebar .nav .nav-item:not(:nth-child(2)).active {
+    background: transparent !important;
+}
+.page-header .header-right .btn.btn-icon-text{
+    padding: 0 19px 0 0 !important;
+}
+.page-header .header-right .btn{
+    padding: 10px 20px !important;
+}
+/*Inicio creacion Joel*/
+.bg-blue-dreamed{
+    background: #00CBFE !important;
+  }
+
+  .bg-blue-dreamed-dark{
+    background: #00abd5 !important;
+  }
+
+  .text-white{
+    color:#ffffff;
+
+  }
+
+  .bg-black-dreamed{
+    background: #040404 !important;
+  }
+
+  .decoration-none{
+    text-decoration: none;
+  }
+
+  /*Fin creacion Joel*/

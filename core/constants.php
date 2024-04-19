@@ -8,4 +8,4 @@ define('DB_CONFIG', [
     'password' => '',
 ]);
 
-define('THEME_NAME', 'Stellar');
+define('THEME_NAME', 'Plus');

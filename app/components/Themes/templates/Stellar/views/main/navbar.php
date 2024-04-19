@@ -13,8 +13,6 @@
                 <i class="icon-magnifier"></i>
                 <input type="search" class="form-control" placeholder="Search Here" title="Search here">
             </form>
-            <li class="nav-item"><a href="#" class="nav-link"><i class="icon-basket-loaded"></i></a></li>
-            <li class="nav-item"><a href="#" class="nav-link"><i class="icon-chart"></i></a></li>
             <li class="nav-item dropdown">
                 <a class="nav-link count-indicator message-dropdown" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                     <i class="icon-speech"></i>
@@ -35,42 +33,6 @@
                             <p class="font-weight-light small-text"> The meeting is cancelled </p>
                         </div>
                     </a>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="<?= $base_url ?><?= $themePath ?>images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
-                        </div>
-                        <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
-                            <p class="font-weight-light small-text"> The meeting is cancelled </p>
-                        </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="<?= $base_url ?><?= $themePath ?>images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
-                        </div>
-                        <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
-                            <p class="font-weight-light small-text"> The meeting is cancelled </p>
-                        </div>
-                    </a>
-                </div>
-            </li>
-            <li class="nav-item dropdown language-dropdown d-none d-sm-flex align-items-center">
-                <a class="nav-link d-flex align-items-center dropdown-toggle" id="LanguageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                    <div class="d-inline-flex mr-3">
-                        <i class="flag-icon flag-icon-us"></i>
-                    </div>
-                    <span class="profile-text font-weight-normal">English</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-left navbar-dropdown py-2" aria-labelledby="LanguageDropdown">
-                    <a class="dropdown-item">
-                        <i class="flag-icon flag-icon-us"></i> English </a>
-                    <a class="dropdown-item">
-                        <i class="flag-icon flag-icon-fr"></i> French </a>
-                    <a class="dropdown-item">
-                        <i class="flag-icon flag-icon-ae"></i> Arabic </a>
-                    <a class="dropdown-item">
-                        <i class="flag-icon flag-icon-ru"></i> Russian </a>
                 </div>
             </li>
             <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
@@ -86,7 +48,7 @@
                     <a class="dropdown-item"><i class="dropdown-item-icon icon-speech text-primary"></i> Messages</a>
                     <a class="dropdown-item"><i class="dropdown-item-icon icon-energy text-primary"></i> Activity</a>
                     <a class="dropdown-item"><i class="dropdown-item-icon icon-question text-primary"></i> FAQ</a>
-                    <a class="dropdown-item"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
+                    <a href="<?= $base_url ?>login/logout" class="dropdown-item"><i class="dropdown-item-icon icon-power text-primary"></i>Sign Out</a>
                 </div>
             </li>
         </ul>
