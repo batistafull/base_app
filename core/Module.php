@@ -43,5 +43,8 @@ class Module{
         }
     }
 
+    protected function redirect($url){
+        Flight::redirect($url);
+    }
 
 }
