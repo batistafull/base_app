@@ -11,6 +11,7 @@ class Module{
     {
         $this->className = get_called_class();
         $this->data = [];
+        $this->data['base_url'] = BASE_URL.SUBDIR;
         $this->manifest = $GLOBALS['manifest'];
         foreach ($GLOBALS['app_manifest'] as $key => $value) {
             $this->data[$key] = $value;
@@ -51,7 +52,7 @@ class Module{
 
     private function getParams(){
         $routes = explode('/', $_SERVER['REQUEST_URI']);
-        if($routes[1] == $GLOBALS['app_manifest']['name']){
+        if($routes[1] == NAME){
             return array_slice($routes, 2);
         }else{
             return array_slice($routes, 1);

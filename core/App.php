@@ -25,7 +25,7 @@ class App{
     private function prepareModules(){
         Flight::route('/*', function(){
             $this->getParams();
-            $module = (!empty($this->manifest['routes'][0]) && is_dir('app/modules/'.$this->manifest['routes'][0])) ? $this->manifest['routes'][0] : $this->manifest['main'];
+            $module = (!empty($this->manifest['routes'][0]) && is_dir('app/modules/'.$this->manifest['routes'][0])) ? $this->manifest['routes'][0] : MAIN;
             if(file_exists('app/modules/' . $module . '/manifest.php')){
                 require_once 'app/modules/' . $module . '/manifest.php';
                 $GLOBALS['manifest'] = $manifest;
@@ -47,7 +47,7 @@ class App{
     private function getParams(){
         $this->manifest['routes'] = [];
         $routes = explode('/', $_SERVER['REQUEST_URI']);
-        if($routes[1] == $this->manifest['name']){
+        if($routes[1] == NAME){
             $this->manifest['routes'] = array_slice($routes, 2);
         }else{
             $this->manifest['routes'] = array_slice($routes, 1);
