@@ -32,7 +32,11 @@ class App{
                 if(file_exists('app/modules/'.$manifest['className'].'/'.$manifest['className'].'.php')){
                     require_once 'app/modules/'.$manifest['className'].'/'.$manifest['className'].'.php';
                     $m = new $manifest['className']();
-                    $method = $this->manifest['routes'][1] ?? $manifest['index'];
+                    $method = $manifest['index'];
+                    if(in_array(strtolower($this->manifest['routes'][0]), [strtolower(MAIN), strtolower($manifest['className'])])){
+                        if(isset($this->manifest['routes'][1]) && !empty($this->manifest['routes'][1]))
+                        $method = (method_exists($m, $this->manifest['routes'][1])) ? $this->manifest['routes'][1] : $manifest['index'];
+                    }
                     $m->$method();
                 }else{
                     echo json_encode(['Error con la clase' . $manifest['className']]);
