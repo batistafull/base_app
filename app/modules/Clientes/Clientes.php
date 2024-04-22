@@ -17,4 +17,8 @@ class Clientes extends Module{
         $this->data['props'] = $this->props;
         $this->theme->display('Clientes', 'clientes', $this->data);
     }
+
+    public function tet(){
+        echo 'from cliente';
+    }
 }

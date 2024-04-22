@@ -18,4 +18,8 @@ class Home extends Module
         $this->data['nombre'] = 'Alberto';
         $theme->display('Home', 'home', $this->data);
     }
+    
+    public function test() {
+        echo 'ok';
+    }
 }
