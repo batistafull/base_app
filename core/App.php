@@ -34,8 +34,13 @@ class App{
                     $m = new $manifest['className']();
                     $method = $manifest['index'];
                     if(in_array(strtolower($this->manifest['routes'][0]), [strtolower(MAIN), strtolower($manifest['className'])])){
-                        if(isset($this->manifest['routes'][1]) && !empty($this->manifest['routes'][1]))
-                        $method = (method_exists($m, $this->manifest['routes'][1])) ? $this->manifest['routes'][1] : $manifest['index'];
+                        if(isset($this->manifest['routes'][1]) && !empty($this->manifest['routes'][1])){
+                            $method = (method_exists($m, $this->manifest['routes'][1])) ? $this->manifest['routes'][1] : $manifest['index'];
+                        }
+                    }else{
+                        if(isset($this->manifest['routes'][0]) && !empty($this->manifest['routes'][0])){
+                            $method = (method_exists($m, $this->manifest['routes'][0])) ? $this->manifest['routes'][0] : $manifest['index'];
+                        }
                     }
                     $m->$method();
                 }else{
