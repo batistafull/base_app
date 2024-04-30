@@ -1,6 +1,8 @@
 <?php
 
-class Login extends Module{
+namespace modules;
+
+class Login extends \core\Module{
     private $db;
     private $theme;
     private $auth;

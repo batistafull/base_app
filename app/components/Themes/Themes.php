@@ -1,6 +1,10 @@
 <?php
 
-class Themes extends Component{
+namespace components;
+
+use flight;
+
+class Themes extends \core\Component{
     private $themeName;
     private $themePath;
     private $metadata;

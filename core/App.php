@@ -1,8 +1,12 @@
 <?php
+namespace core;
+
 require 'vendor/autoload.php';
 require 'core/constants.php';
 require 'core/Module.php';
 require 'core/Component.php';
+
+use Flight;
 
 class App{
 
@@ -29,11 +33,13 @@ class App{
             if(file_exists('app/modules/' . $module . '/manifest.php')){
                 require_once 'app/modules/' . $module . '/manifest.php';
                 $GLOBALS['manifest'] = $manifest;
-                if(file_exists('app/modules/'.$manifest['className'].'/'.$manifest['className'].'.php')){
-                    require_once 'app/modules/'.$manifest['className'].'/'.$manifest['className'].'.php';
-                    $m = new $manifest['className']();
+                $className = $manifest['className'];
+                if(file_exists('app/modules/'.$className.'/'.$className.'.php')){
+                    require_once 'app/modules/'.$className.'/'.$className.'.php';
+                    $classFullName = 'modules\\' . $className;
+                    $m = new $classFullName();
                     $method = $manifest['index'];
-                    if(in_array(strtolower($this->manifest['routes'][0]), [strtolower(MAIN), strtolower($manifest['className'])])){
+                    if(in_array(strtolower($this->manifest['routes'][0]), [strtolower(MAIN), strtolower($className)])){
                         if(isset($this->manifest['routes'][1]) && !empty($this->manifest['routes'][1])){
                             $method = (method_exists($m, $this->manifest['routes'][1])) ? $this->manifest['routes'][1] : $manifest['index'];
                         }
@@ -44,7 +50,7 @@ class App{
                     }
                     $m->$method();
                 }else{
-                    echo json_encode(['Error con la clase' . $manifest['className']]);
+                    echo json_encode(['Error con la clase' . $className]);
                 }
             }else{
                 echo json_encode(['Archivo manifest no existe']);
@@ -53,12 +59,12 @@ class App{
     }
 
     private function getParams(){
-        $this->manifest['routes'] = [];
-        $routes = explode('/', $_SERVER['REQUEST_URI']);
-        if($routes[1] == NAME){
-            $this->manifest['routes'] = array_slice($routes, 2);
-        }else{
-            $this->manifest['routes'] = array_slice($routes, 1);
+        if (!defined('NAME')) {
+            throw new \Exception("La constante NAME no está definida.");
         }
+        $routes = explode('/', $_SERVER['REQUEST_URI']);
+        $startIndex = ($routes[1] == NAME) ? 2 : 1;
+        $this->manifest['routes'] = array_slice($routes, $startIndex);
+        return $this->manifest['routes'];
     }
 }

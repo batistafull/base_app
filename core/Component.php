@@ -1,5 +1,7 @@
 <?php
 
+namespace core;
+
 use Medoo\Medoo;
 
 class Component{
@@ -9,6 +11,6 @@ class Component{
     public function __construct()
     {
         $this->className = get_called_class();
-        $this->component_path = 'components/'.$this->className.'/';
+        $this->component_path = $this->className.'/';
     }
 }

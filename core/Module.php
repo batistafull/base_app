@@ -1,5 +1,6 @@
 <?php
 
+namespace core;
 
 class Module{
     protected $className;
@@ -24,26 +25,41 @@ class Module{
     }
 
     protected function dependencies($classname){
-        if(isset($this->manifest['dependencies']) && !empty($this->manifest['dependencies'])){
-            $module = array_search($classname, $this->manifest['dependencies']);
-            if(file_exists('app/modules/'. $module . '/includes' . '/' . $classname . '.php')){
-                require_once 'app/modules/'. $module . '/includes' . '/' . $classname . '.php';
-                return new $classname();
-            }
+        if (!isset($this->manifest['dependencies']) || empty($this->manifest['dependencies'])) {
+            throw new \Exception("No hay dependencias definidas en el manifiesto.");
         }
+        $module = array_search($className, $this->manifest['dependencies'], true);
+        if ($module === false) {
+            throw new \Exception("La clase $className no está definida como una dependencia en el manifiesto.");
+        }
+        $classFile = realpath("app/modules/$module/includes/$className.php");
+        if (!$classFile || !file_exists($classFile)) {
+            throw new \Exception("El archivo de la clase $className no existe en el módulo $module.");
+        }
+        require_once $classFile;
+        return new $className();
     }
 
     protected function getComponent($component){
-        if(is_dir('app/components/'.$component)){
-            if(file_exists('app/components/'.$component.'/manifest.php')){
-                require_once 'app/components/'.$component.'/manifest.php';
-                if(file_exists('app/components/'.$manifest['className'].'/'.$manifest['className'].'.php')){
-                    require_once 'app/components/'.$component.'/'.$manifest['className'].'.php';
-                    return new $manifest['className']();
-                }
-            }
-            
+        $componentDirectory = 'app/components/' . $component;
+        if (!is_dir($componentDirectory)) {
+            throw new \Exception("El directorio del componente $component no existe");
         }
+        $manifestFile = $componentDirectory . '/manifest.php';
+        if (!file_exists($manifestFile)) {
+            throw new \Exception("El archivo de manifiesto para el componente $component no existe");
+        }
+        require_once $manifestFile;
+        
+        $className = $manifest['className'];
+        $classFile = $componentDirectory . '/' . $className . '.php';
+        if (!file_exists($classFile)) {
+            throw new \Exception("El archivo de clase para el componente $component no existe");
+        }
+        require_once $classFile;
+
+        $classNameFinal = 'components\\' . $manifest['className'];
+        return new $classNameFinal();
     }
 
     protected function redirect($url){
@@ -51,12 +67,13 @@ class Module{
     }
 
     private function getParams(){
-        $routes = explode('/', $_SERVER['REQUEST_URI']);
-        if($routes[1] == NAME){
-            return array_slice($routes, 2);
-        }else{
-            return array_slice($routes, 1);
+        $url = strtok($_SERVER['REQUEST_URI'], '?');
+        $routes = explode('/', $url);
+        if (!defined('NAME')) {
+            throw new \Exception("La constante NAME no está definida.");
         }
+        $startIndex = ($routes[1] == NAME) ? 2 : 1;
+        return array_slice($routes, $startIndex);
     }
 
 }

@@ -1,8 +1,10 @@
 <?php
 
+namespace components;
+
 use Medoo\Medoo;
 
-class DbManager extends Component{
+class DbManager extends \core\Component{
 
     public function __construct()
     {

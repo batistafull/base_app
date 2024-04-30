@@ -1,6 +1,8 @@
 <?php
 
-class Clientes extends Module{
+namespace modules;
+
+class Clientes extends \core\Module{
     private $auth;
     private $theme;
     public function __construct()

@@ -1,6 +1,8 @@
 <?php
 
-class Home extends Module
+namespace modules;
+
+class Home extends \core\Module
 {
     public function __construct()
     {

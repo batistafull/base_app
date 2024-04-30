@@ -1,7 +1,10 @@
 <?php 
+
+namespace components;
+
 session_start();
 
-class Auth extends Component{
+class Auth extends \core\Component{
     public function __construct()
     {
         parent::__construct();
