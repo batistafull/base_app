@@ -20,4 +20,5 @@ $metadata = [
     ],
     'type' => 'template',
     'uniqueId' => 'ce27276a-4376-4b4f-bbb8-4dca92b02127',
+    'screenshot' => 'images/screenshots/default.jpg'
 ];
