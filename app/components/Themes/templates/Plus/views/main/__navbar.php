@@ -107,8 +107,10 @@
                     <div class="nav-profile-text">ABATISTA </div>
                 </a>
                 <div class="dropdown-menu center navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="<?= $base_url ?>/users">
+                    <a class="dropdown-item" href="<?= $base_url ?>users">
                     <i class="mdi mdi-account-circle me-2"></i> Users </a>
+                    <a class="dropdown-item" href="<?= $base_url ?>themes">
+                    <i class="mdi mdi-palette me-2"></i> Themes </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="<?= $base_url ?>login/logout">
                     <i class="mdi mdi-logout-variant me-2"> </i> logout </a>
