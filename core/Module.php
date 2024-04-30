@@ -2,6 +2,8 @@
 
 namespace core;
 
+use flight;
+
 class Module{
     protected $className;
     protected $data;
@@ -21,10 +23,10 @@ class Module{
     }
 
     protected function view($path){
-        Flight::render('modules/' . $this->className . '/views' . '/' . $path, $this->data); 
+        Flight::render($this->className . '/views' . '/' . $path, $this->data); 
     }
 
-    protected function dependencies($classname){
+    protected function dependencies($className){
         if (!isset($this->manifest['dependencies']) || empty($this->manifest['dependencies'])) {
             throw new \Exception("No hay dependencias definidas en el manifiesto.");
         }
