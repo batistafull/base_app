@@ -18,4 +18,6 @@ $metadata = [
             'login/footerLogin' => 'footerContent',
         ],
     ],
+    'type' => 'template',
+    'uniqueId' => '70888487-d93c-4fdb-b0c7-09c81a45b788',
 ];
