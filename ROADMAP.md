@@ -12,3 +12,5 @@
 - [ ] Create Custom Global Class
 - [ ] Create (ListView, DetailView, EditView) Component
 - [ ] Manager Contants
+- [ ] Installers (Modules, Components, Temes, System)
+- [ ] Updaters
