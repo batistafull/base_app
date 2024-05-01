@@ -2,8 +2,8 @@
 
 
 $listView = [
-    'Created',
-    'Profile',
-    'VatNo',
-    'Status',
+    'created',
+    'profile',
+    'vatno',
+    'status',
 ];
