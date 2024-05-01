@@ -28,7 +28,11 @@ class Themes extends \core\Component{
 
     public function display($module, $path, $data = [], $type = 'main'){
         $this->partials($data, $type);
-        Flight::render('modules/' . $module . '/views' . '/' . $path, $data, 'bodyContent');
+        if(file_exists('app/modules/' . $module . '/views' . '/' . $path . '.php')){
+            Flight::render('modules/' . $module . '/views' . '/' . $path, $data, 'bodyContent');
+        }else{
+            $data['bodyContent'] = $path;
+        }
         Flight::render($this->component_path.'templates/'.$this->themeName.'/views'.'/'.$this->metadata['entryPoint'], $data);
     }
 
