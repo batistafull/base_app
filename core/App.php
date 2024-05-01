@@ -41,13 +41,11 @@ class App{
                     $method = $manifest['index'];
                     if(in_array(strtolower($this->manifest['routes'][0]), [strtolower(MAIN), strtolower($className)])){
                         if(isset($this->manifest['routes'][1]) && !empty($this->manifest['routes'][1])){
-                            $parsed_url = parse_url($this->manifest['routes'][1]);
-                            $method = (method_exists($m, $parsed_url['path'])) ? $parsed_url['path'] : $manifest['index'];
+                            $method = (method_exists($m, $this->manifest['routes'][1])) ? $this->manifest['routes'][1] : $manifest['index'];
                         }
                     }else{
                         if(isset($this->manifest['routes'][0]) && !empty($this->manifest['routes'][0])){
-                            $parsed_url = parse_url($this->manifest['routes'][0]);
-                            $method = (method_exists($m, $parsed_url['path'])) ? $parsed_url['path'] : $manifest['index'];
+                            $method = (method_exists($m, $this->manifest['routes'][0])) ? $this->manifest['routes'][0] : $manifest['index'];
                         }
                     }
                     $m->$method();
@@ -60,11 +58,20 @@ class App{
         });
     }
 
+    /*private function prepareModules(){
+       $request_uri = $_SERVER['REQUEST_URI'];
+        if(SUBDIR !== null && !empty(SUBDIR)){
+            $request_uri = str_replace(SUBDIR, '',$_SERVER['REQUEST_URI']);
+        }
+        echo json_encode($request_uri);
+    }*/
+
     private function getParams(){
         if (!defined('NAME')) {
             throw new \Exception("La constante NAME no está definida.");
         }
-        $routes = explode('/', $_SERVER['REQUEST_URI']);
+        $request_uri = parse_url($_SERVER['REQUEST_URI']);
+        $routes = explode('/', $request_uri['path']);
         $startIndex = ($routes[1] == NAME) ? 2 : 1;
         $this->manifest['routes'] = array_slice($routes, $startIndex);
         return $this->manifest['routes'];

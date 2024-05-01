@@ -14,3 +14,4 @@
 - [ ] Manager Contants
 - [ ] Installers (Modules, Components, Temes, System)
 - [ ] Updaters
+- [ ] Extensions
