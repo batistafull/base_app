@@ -32,4 +32,11 @@ class Ext extends \core\Module
             $this->theme->display('Ext', 'There is no module!', $this->data);
         }
     }
+
+    public function studio(){
+        $this->auth->getSession('auth_id', function(){
+            $this->redirect('login');
+        });
+        $this->theme->display('Ext', 'studio', $this->data);
+    }
 }
