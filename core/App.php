@@ -26,7 +26,7 @@ class App{
         Flight::start(); 
     }
 
-    private function prepareModules(){
+    /*private function prepareModules(){
         Flight::route('/*', function(){
             $this->getParams();
             $module = (!empty($this->manifest['routes'][0]) && is_dir('app/modules/'.$this->manifest['routes'][0])) ? $this->manifest['routes'][0] : MAIN;
@@ -56,15 +56,82 @@ class App{
                 echo json_encode(['Archivo manifest no existe']);
             }
         });
-    }
-
-    /*private function prepareModules(){
-       $request_uri = $_SERVER['REQUEST_URI'];
-        if(SUBDIR !== null && !empty(SUBDIR)){
-            $request_uri = str_replace(SUBDIR, '',$_SERVER['REQUEST_URI']);
-        }
-        echo json_encode($request_uri);
     }*/
+
+    /**
+     * prepare module
+     */
+    private function prepareModules() {
+        Flight::route('/*', function() {
+            $this->getParams();
+            $module = $this->getModule();
+            
+            if (!$this->loadManifest($module)) {
+                echo json_encode(['Archivo manifest no existe']);
+                return;
+            }
+    
+            $className = $GLOBALS['manifest']['className'];
+    
+            if (!$this->loadClass($className)) {
+                echo json_encode(['Error con la clase ' . $className]);
+                return;
+            }
+    
+            $m = $this->createClassInstance($className);
+            $method = $this->getMethod($m, $className);
+            $m->$method();
+        });
+    }
+    
+    private function getModule() {
+        return (!empty($this->manifest['routes'][0]) && is_dir('app/modules/' . $this->manifest['routes'][0])) ? 
+               $this->manifest['routes'][0] : 
+               MAIN;
+    }
+    
+    private function loadManifest($module) {
+        $manifestPath = 'app/modules/' . $module . '/manifest.php';
+        if (file_exists($manifestPath)) {
+            require_once $manifestPath;
+            $GLOBALS['manifest'] = $manifest;
+            return true;
+        }
+        return false;
+    }
+    
+    private function loadClass($className) {
+        $classPath = 'app/modules/' . $className . '/' . $className . '.php';
+        if (file_exists($classPath)) {
+            require_once $classPath;
+            return true;
+        }
+        return false;
+    }
+    
+    private function createClassInstance($className) {
+        $classFullName = 'modules\\' . $className;
+        return new $classFullName();
+    }
+    
+    private function getMethod($instance, $className) {
+        $defaultMethod = $GLOBALS['manifest']['index'];
+        $route = $this->manifest['routes'][0];
+        $subRoute = $this->manifest['routes'][1] ?? null;
+    
+        if (in_array(strtolower($route), [strtolower(MAIN), strtolower($className)])) {
+            if ($subRoute && method_exists($instance, $subRoute)) {
+                return $subRoute;
+            }
+        } else if (method_exists($instance, $route)) {
+            return $route;
+        }
+    
+        return $defaultMethod;
+    }
+    /**
+     * Fin prpare module
+     */
 
     private function getParams(){
         if (!defined('NAME')) {

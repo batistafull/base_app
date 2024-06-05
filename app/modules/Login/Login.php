@@ -18,7 +18,7 @@ class Login extends \core\Module{
     public function index(){
         $this->auth->getSession('auth_id', function(){
             $this->redirect('/');
-         }, true);
+        }, true);
         $this->theme->partials($this->data, 'login');
         $this->view('login_plus');
     }
